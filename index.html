@@ -1,0 +1,135 @@
+<!DOCTYPE html>
+<html lang="en">
+
+<head>
+    <meta charset="UTF-8" />
+    <meta name="viewport" content="width=device-width, initial-scale=1.0" />
+    <title>Resultsheet - Marksheet generator</title>
+    <link href="https://fonts.googleapis.com/css2?family=Roboto:wght@400;700&display=swap" rel="stylesheet">
+    <link rel="stylesheet" href="style.css" />
+</head>
+
+<body>
+    <div class="container">
+        <h2 class="main-title">Dynamic Grading</h2>
+        <div class="header-box">
+            <div class="header">
+                <span>Subject</span>
+                <span>Marks</span>
+                <span>Action</span>
+                <span>Grade</span>
+            </div>
+            <div class="body">
+                <div class="row">
+                    <label for="bangla">Bangla</label>
+                    <div class="marks-box">
+                        <input id='banglaNumber' type="text" placeholder="Number you got" />
+                    </div>
+                    <div class="action-box">
+                        <button onclick="numberCalculation()">Calculate</button>
+                    </div>
+                    <div class="grade-box">
+                        <p id ="bdResult">F</p>
+                    </div>
+                </div>
+
+                <div class="row">
+                    <label for="english">English</label>
+                    <div class="marks-box">
+                        <input id='englishNumber' type="text" placeholder="Number you got" />
+                    </div>
+                    <div class="action-box">
+                        <button onclick="numberCalculation1()">Calculate</button>
+                    </div>
+                    <div class="grade-box">
+                        <p id ='engResult'>F</p>
+                    </div>
+                </div>
+                <div class="row">
+                    <label for="ict">ICT</label>
+                    <div class="marks-box">
+                        <input id='ictNumber' type="text" placeholder="Number you got" />
+                    </div>
+                    <div class="action-box">
+                        <button onclick="numberCalculation2()">Calculate</button>
+                    </div>
+                    <div class="grade-box">
+                        <p id = "ictResult">F</p>
+                    </div>
+                </div>
+            </div>
+            <div class="footer">
+                <p>Total Mark: <strong id  = "total-mark">00</strong></p>
+                <div class="action-box">
+                    <button onclick="numberCalculation3()">Calculate</button>
+                </div>
+
+                <p>Final grade(Average): <strong id = "result-Last">F</strong></p>
+            </div>
+        </div>
+    </div>
+
+    <!-- javaScript -->
+    <script>
+        function numberCalculation(){
+            let bdNumber = document.getElementById('banglaNumber').value;
+            let total = document.getElementById("total-mark").innerText;
+                total = eval(parseFloat(bdNumber)+parseFloat(total));
+                document.getElementById("total-mark").innerText = total;
+            let result =   resultChecker(bdNumber);
+            document.getElementById("bdResult").innerText=result;
+
+        }
+        function numberCalculation1(){
+            let engNumber = document.getElementById('englishNumber').value;
+            let total = document.getElementById("total-mark").innerText;
+                total = eval(parseFloat(engNumber)+parseFloat(total));
+                document.getElementById("total-mark").innerText = total;
+            let result =   resultChecker(engNumber);
+            document.getElementById("engResult").innerText=result;
+
+        }
+        function  numberCalculation2(){
+            let ictNumber = document.getElementById('ictNumber').value;
+            let total = document.getElementById("total-mark").innerText;
+                total = eval(parseFloat(ictNumber)+parseFloat(total));
+                document.getElementById("total-mark").innerText = total;
+            let result =   resultChecker(ictNumber);
+            document.getElementById("ictResult").innerText=result;
+
+        }
+        function  numberCalculation3(){
+            let total = document.getElementById("total-mark").innerText;
+                total = total/3;
+            let finalResult = resultChecker (total);
+            document.getElementById("result-Last").innerText = finalResult;
+
+        }
+
+           const  resultChecker = (number)=>{
+            if (number>=80 && number<=100){
+                return 'A+';
+            }
+            else if (number>=70 && number<=79){
+                return 'A';
+            }
+            else if (number>=60 && number<=69){
+                return 'A-';
+            }
+            else if(number>=50 && number<=59){
+                return 'B';
+            }
+            else if(number>=40 && number<=49){
+                return 'C';
+            }
+            else if(number>=33 && number<=39){
+                return 'D'
+            }
+            else{
+                return 'F'
+            }
+        }
+    </script>
+</body>
+
+</html>
